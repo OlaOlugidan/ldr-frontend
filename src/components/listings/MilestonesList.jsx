@@ -1,4 +1,3 @@
-// src/components/listings/MilestonesList.jsx
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import api from '../../services/api';
@@ -10,10 +9,10 @@ const MilestonesList = () => {
   useEffect(() => {
     const fetchMilestones = async () => {
       try {
-        const res = await api.get('/milestones');
+        const res = await api.get('/api/milestones'); // ✅ Fixed API path
         setMilestones(res.data.milestones);
       } catch (err) {
-        setError('Failed to load milestones.');
+        setError(err.response?.data?.message || 'Failed to load milestones.');
       }
     };
     fetchMilestones();

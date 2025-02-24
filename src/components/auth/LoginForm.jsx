@@ -1,4 +1,3 @@
-// src/components/auth/LoginForm.jsx
 import React, { useState } from 'react';
 import { Button, TextField, Box, Typography } from '@mui/material';
 import api from '../../services/api';
@@ -16,11 +15,10 @@ const LoginForm = () => {
     e.preventDefault();
     setError('');
     try {
-      const response = await api.post('/auth/login', formData);
-      // Assume the response contains user and token
+      const response = await api.post('/api/auth/login', formData);
       login(response.data);
     } catch (err) {
-      setError('Login failed. Please check your credentials.');
+      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
     }
   };
 

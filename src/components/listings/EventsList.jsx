@@ -1,4 +1,3 @@
-// src/components/listings/EventsList.jsx
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import api from '../../services/api';
@@ -10,10 +9,10 @@ const EventsList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await api.get('/events');
+        const res = await api.get('/api/events'); // <-- Ensures proper API path
         setEvents(res.data.events);
       } catch (err) {
-        setError('Failed to load events.');
+        setError(err.response?.data?.message || 'Failed to load events.');
       }
     };
     fetchEvents();

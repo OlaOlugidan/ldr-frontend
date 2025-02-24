@@ -1,4 +1,4 @@
-// src/components/Layout.js
+// src/components/Layout.jsx
 import React from 'react';
 import { Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -21,7 +21,7 @@ const Layout = () => {
         <Box sx={{ overflow: 'auto' }}>
           <List>
             {['Dashboard', 'Milestones', 'Events', 'Profile'].map((text) => (
-              <ListItem button key={text}>
+              <ListItem key={text} onClick={() => console.log(`Navigate to: ${text}`)} sx={{ cursor: 'pointer' }}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>

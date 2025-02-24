@@ -1,4 +1,3 @@
-// src/components/auth/RegistrationForm.jsx
 import React, { useState } from 'react';
 import { Button, TextField, Box, Typography } from '@mui/material';
 import api from '../../services/api';
@@ -23,13 +22,13 @@ const RegistrationForm = () => {
       return setError('Passwords do not match.');
     }
     try {
-      await api.post('/auth/register', {
+      const res = await api.post('/api/auth/register', {
         username: formData.username,
         password: formData.password,
       });
-      setSuccess('Registration successful. You can now log in.');
+      setSuccess(res.data.message || 'Registration successful. You can now log in.');
     } catch (err) {
-      setError('Registration failed. Try again.');
+      setError(err.response?.data?.message || 'Registration failed. Try again.');
     }
   };
 

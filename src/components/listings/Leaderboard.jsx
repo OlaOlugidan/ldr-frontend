@@ -1,4 +1,3 @@
-// src/components/listings/Leaderboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import api from '../../services/api';
@@ -10,10 +9,10 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await api.get('/leaderboard');
+        const res = await api.get('/api/leaderboard'); // ✅ Fixed API path
         setLeaders(res.data.leaders);
       } catch (err) {
-        setError('Failed to load leaderboard.');
+        setError(err.response?.data?.message || 'Failed to load leaderboard.');
       }
     };
     fetchLeaderboard();

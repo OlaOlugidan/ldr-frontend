@@ -1,4 +1,3 @@
-// src/components/dashboard/Dashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
 import api from '../../services/api';
@@ -11,13 +10,12 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Example API call to fetch notifications
     const fetchNotifications = async () => {
       try {
-        const res = await api.get('/notifications');
+        const res = await api.get('/api/notifications'); // <-- Ensures proper API path
         setNotifications(res.data.notifications);
       } catch (error) {
-        console.error('Failed to load notifications:', error);
+        console.error('Failed to load notifications:', error.response?.data?.message || error);
       } finally {
         setLoading(false);
       }
